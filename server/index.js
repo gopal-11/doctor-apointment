@@ -1,5 +1,4 @@
 const express = require("express");
-const graphqlHTTP = require("express-graphql");
 const cors = require("cors");
 const path = require("path");
 
@@ -8,8 +7,8 @@ const app = express();
 
 app.use("*", cors());
 
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.resolve(__dirname, "../react-ui/build")));
+if (process.env === "production") {
+  app.use(express.static(path.resolve(__dirname, "react-ui")));
 
   app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "index.html"));
